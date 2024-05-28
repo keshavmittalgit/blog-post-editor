@@ -1,150 +1,98 @@
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-:root {
-  --background-color: #f4f4f4;
-  --container-bg-color: #fff;
-  --text-color: #333;
-  --input-bg-color: #fff;
-  --input-border-color: #ddd;
-  --button-bg-color: #007BFF;
-  --button-hover-bg-color: #0056b3;
-  --delete-btn-bg-color: red;
-  --delete-btn-hover-bg-color: darkred;
-  --task-bg-color: #f9f9f9;
-  --task-border-color: #ddd;
-  --completed-task-color: gray;
-}
-
-body.dark-mode {
-  --background-color: #121212;
-  --container-bg-color: #1e1e1e;
-  --text-color: #e0e0e0;
-  --input-bg-color: #2c2c2c;
-  --input-border-color: #555;
-  --button-bg-color: #bb86fc;
-  --button-hover-bg-color: #9a67ea;
-  --delete-btn-bg-color: #cf6679;
-  --delete-btn-hover-bg-color: #b3556b;
-  --task-bg-color: #2c2c2c;
-  --task-border-color: #555;
-  --completed-task-color: #757575;
-}
-
+/* General styles */
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--background-color);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-  background: var(--container-bg-color);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 400px;
-  max-height: 80vh;
-  display: flex;
-  flex-direction: column;
+    max-width: 800px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-h1 {
-  margin-top: 0;
-  font-size: 24px;
-  text-align: center;
-  color: var(--text-color);
+/* Toolbar styles */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #343a40;
+    padding: 10px;
+    color: #ffffff;
 }
 
-#task-input-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+.toolbar label {
+    margin-right: 10px;
+    font-size: 14px;
 }
 
-#new-task {
-  padding: 10px;
-  flex-grow: 1;
-  background-color: var(--input-bg-color);
-  border: 1px solid var(--input-border-color);
-  border-radius: 4px;
-  font-size: 16px;
-  color: var(--text-color);
+.toolbar select,
+.toolbar button {
+    background-color: #495057;
+    border: none;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-button {
-  padding: 10px 15px;
-  background-color: var(--button-bg-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 20px;
-  margin-left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.toolbar select {
+    margin-right: 10px;
 }
 
-button:hover {
-  background-color: var(--button-hover-bg-color);
+.toolbar button:hover {
+    background-color: #6c757d;
 }
 
-#tasks-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  overflow-y: auto;
-  flex-grow: 1;
+.toolbar button {
+    margin: 2px;
 }
 
-li {
-  background: var(--task-bg-color);
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid var(--task-border-color);
-  color: var(--text-color);
+/* Editor styles */
+#editor {
+    border: 1px solid #ccc;
+    padding: 15px;
+    min-height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    outline: none;
 }
 
-li.completed {
-  text-decoration: line-through;
-  color: var(--completed-task-color);
+#editor.dragover {
+    border-color: #007bff;
+    background-color: #e9f5ff;
 }
 
-button.delete-btn {
-  background: var(--delete-btn-bg-color);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
+/* Resizable image styles */
+img.resizable {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    position: relative;
 }
 
-button.delete-btn:hover {
-  background: var(--delete-btn-hover-bg-color);
-}
-
-#mode-toggle-btn {
-  padding: 5px 10px;
-  background-color: var(--button-bg-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  align-self: flex-end;
-  margin-bottom: 10px;
-}
-
-#mode-toggle-btn:hover {
-  background-color: var(--button-hover-bg-color);
+img.resizable::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: #007bff;
+    cursor: se-resize;
 }
